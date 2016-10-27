@@ -3,23 +3,23 @@
 					xmlns:controls="clr-namespace:MetroRadiance.UI.Controls">
 
 	<Style TargetType="{x:Type controls:Badge}">
-		<Setter Property="Width"
-				Value="22" />
-		<Setter Property="Height"
-				Value="22" />
+		<Setter Property="Width" Value="22" />
+		<Setter Property="Height" Value="22" />
+		<Setter Property="Background" Value="{DynamicResource AccentHighlightBrushKey}" />
+		<Setter Property="Foreground" Value="{DynamicResource ActiveForegroundBrushKey}" />
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="controls:Badge">
 					<Grid>
 						<Border CornerRadius="100"
-								Background="{DynamicResource AccentHighlightBrushKey}"
+								Background="{TemplateBinding Background}"
 								BorderThickness="0"
-								BorderBrush="{DynamicResource AccentHighlightBrushKey}">
+								BorderBrush="{TemplateBinding Background}">
 						</Border>
 						<TextBlock x:Name="PART_CountHost"
 								   FontSize="11"
 								   FontFamily="Segoe UI"
-								   Foreground="{DynamicResource AccentForegroundBrushKey}"
+								   Foreground="{TemplateBinding Foreground}"
 								   VerticalAlignment="Center"
 								   HorizontalAlignment="Center" />
 					</Grid>

@@ -22,10 +22,8 @@
 		<Setter Property="ItemContainerStyle">
 			<Setter.Value>
 				<Style TargetType="{x:Type ListBoxItem}">
-					<Setter Property="Foreground"
-							Value="{DynamicResource ActiveForegroundBrushKey}" />
-					<Setter Property="IsSelected"
-							Value="{Binding IsSelected, Mode=OneWay}" />
+					<Setter Property="Foreground" Value="{DynamicResource ActiveForegroundBrushKey}" />
+					<Setter Property="IsSelected" Value="{Binding IsSelected, Mode=OneWay}" />
 					<Setter Property="Template">
 						<Setter.Value>
 							<ControlTemplate TargetType="{x:Type ListBoxItem}">
@@ -35,22 +33,15 @@
 							</ControlTemplate>
 						</Setter.Value>
 					</Setter>
-					<Setter Property="FocusVisualStyle"
-							Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
+					<Setter Property="FocusVisualStyle" Value="{DynamicResource {x:Static SystemParameters.FocusVisualStyleKey}}" />
 					<Style.Triggers>
-						<Trigger Property="IsMouseOver"
-								 Value="True">
-							<Setter Property="Background"
-									Value="{DynamicResource AccentHighlightBrushKey}" />
-							<Setter Property="Foreground"
-									Value="{DynamicResource AccentForegroundBrushKey}" />
+						<Trigger Property="IsMouseOver" Value="True">
+							<Setter Property="Background" Value="{DynamicResource AccentHighlightBrushKey}" />
+							<Setter Property="Foreground" Value="{DynamicResource AccentForegroundBrushKey}" />
 						</Trigger>
-						<Trigger Property="IsSelected"
-								 Value="True">
-							<Setter Property="Background"
-									Value="{DynamicResource AccentBrushKey}" />
-							<Setter Property="Foreground"
-									Value="{DynamicResource AccentForegroundBrushKey}" />
+						<Trigger Property="IsSelected" Value="True">
+							<Setter Property="Background" Value="{DynamicResource AccentBrushKey}" />
+							<Setter Property="Foreground" Value="{DynamicResource AccentForegroundBrushKey}" />
 						</Trigger>
 					</Style.Triggers>
 				</Style>
@@ -59,26 +50,34 @@
 		<Setter Property="ItemTemplate">
 			<Setter.Value>
 				<DataTemplate DataType="{x:Type controls:ITabItem}">
-					<Grid>
-						<Grid.RowDefinitions>
-							<RowDefinition Height="8" />
-							<RowDefinition Height="*" />
-							<RowDefinition Height="8" />
-						</Grid.RowDefinitions>
-						<TextBlock Grid.Row="1"
-								   Text="{Binding Name}"
+					<UniformGrid x:Name="Parent"
+								 Margin="12,0"
+								 Columns="2"
+								 Rows="1">
+						<TextBlock Text="{Binding Name}"
 								   FontSize="14"
-								   Padding="10,2"
+								   Padding="0,10"
 								   Foreground="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}, Path=Foreground}"
 								   VerticalAlignment="Center"
 								   TextTrimming="CharacterEllipsis" />
-						<controls:Badge Grid.Row="1"
-										Grid.RowSpan="2"
+						<controls:Badge x:Name="Badge"
 										Count="{Binding Badge}"
-										Margin="5,2"
-										HorizontalAlignment="Center"
+										HorizontalAlignment="Right"
 										VerticalAlignment="Center" />
-					</Grid>
+					</UniformGrid>
+					<DataTemplate.Triggers>
+						<DataTrigger Binding="{Binding Badge}" Value="{x:Null}">
+							<Setter TargetName="Parent" Property="Columns" Value="1" />
+						</DataTrigger>
+						<DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}, Path=IsMouseOver}" Value="True">
+							<Setter TargetName="Badge" Property="Background" Value="{DynamicResource AccentForegroundBrushKey}" />
+							<Setter TargetName="Badge" Property="Foreground" Value="{DynamicResource AccentBrushKey}" />
+						</DataTrigger>
+						<DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}, Path=IsSelected}" Value="True">
+							<Setter TargetName="Badge" Property="Background" Value="{DynamicResource AccentForegroundBrushKey}" />
+							<Setter TargetName="Badge" Property="Foreground" Value="{DynamicResource AccentHighlightBrushKey}" />
+						</DataTrigger>
+					</DataTemplate.Triggers>
 				</DataTemplate>
 			</Setter.Value>
 		</Setter>
