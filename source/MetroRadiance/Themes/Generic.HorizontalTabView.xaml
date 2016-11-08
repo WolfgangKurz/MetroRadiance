@@ -52,6 +52,8 @@
 				<DataTemplate DataType="{x:Type controls:ITabItem}">
 					<UniformGrid x:Name="Parent"
 								 Margin="12,0"
+								 HorizontalAlignment="Center"
+								 VerticalAlignment="Center"
 								 Columns="2"
 								 Rows="1">
 						<TextBlock Text="{Binding Name}"
@@ -59,6 +61,8 @@
 								   Padding="0,10"
 								   Foreground="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListBoxItem}}, Path=Foreground}"
 								   VerticalAlignment="Center"
+								   HorizontalAlignment="Center"
+								   TextAlignment="Center"
 								   TextTrimming="CharacterEllipsis" />
 						<controls:Badge x:Name="Badge"
 										Count="{Binding Badge}"
