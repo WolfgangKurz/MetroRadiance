@@ -18,7 +18,18 @@ namespace MetroRadiance.UI.Controls
 
 	public class WindowSettings : ApplicationSettingsBase, IWindowSettings
 	{
-		public WindowSettings(Window window) : base(window.GetType().FullName) { }
+		public WindowSettings(Window window) : base(window.GetType().FullName)
+		{
+			// Maybe can upgrade
+			if (!this.Placement.HasValue)
+			{
+				try
+				{
+					this.Upgrade();
+				}
+				catch { }
+			}
+		}
 
 		[UserScopedSetting]
 		public WINDOWPLACEMENT? Placement
